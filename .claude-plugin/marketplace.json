@@ -1,0 +1,18 @@
+{
+  "name": "forje-ai",
+  "description": "Skills pessoais de IA do Lucas Fernandes",
+  "owner": {
+    "name": "Lucas Fernandes"
+  },
+  "plugins": [
+    {
+      "name": "forje-ai",
+      "description": "Skills e atalhos pessoais de IA do Lucas Fernandes para projetos fora da Tasken",
+      "version": "0.1.0",
+      "source": "./",
+      "author": {
+        "name": "Lucas Fernandes"
+      }
+    }
+  ]
+}
