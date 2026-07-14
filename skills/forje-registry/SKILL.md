@@ -1,6 +1,6 @@
 ---
 name: forje-registry
-description: Índice das minhas skills pessoais (Lucas Fernandes) para projetos fora da Tasken. Injetado em toda sessão via hook SessionStart, quando configurado. Use para decidir qual skill invocar.
+description: Índice das minhas skills pessoais (Lucas Fernandes) para projetos fora da Tasken. Use para decidir qual skill invocar para uma tarefa.
 ---
 
 # forje-ai — Registry de skills
