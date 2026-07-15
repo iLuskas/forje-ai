@@ -17,7 +17,8 @@ codar às cegas nem quebrar o que já existe.
    1. Existe `.claude/context.yaml`? Cruze a tarefa com o `covers` de cada doc e
       carregue **somente** os docs cujas áreas a mudança vai tocar — nunca o
       conjunto inteiro. Tarefa no módulo de pagamento não carrega doc de
-      autenticação.
+      autenticação. Se o `covers` deixar dúvida entre dois docs, o `summary` de
+      cada um (manifest v2) decide sem precisar abrir nenhum.
    2. Sem manifest: leia o `CLAUDE.md` do projeto se existir.
    3. Sem nenhum dos dois: olhada rápida na estrutura (linguagem, framework,
       testes) antes de decidir como implementar — e, ao fechar a tarefa, sugira

@@ -21,6 +21,7 @@ automática.
    | `package.json` com `express`/`nest`/`fastify`/`koa` | Backend Node | mesmo conjunto acima |
    | `pyproject.toml` / `requirements.txt` | Python (API, worker, CLI) | mesmo conjunto acima |
    | `package.json` com `react`/`next`/`vite` | Frontend | `frontend-context.md`, `project-structure.md`, `user-interactions.md` |
+   | Nenhuma evidência acima (Go, Rust, Delphi, shell...) | Genérico | mesmo conjunto do backend — diga qual evidência usou pra classificar |
 
    Caso ambíguo (fullstack, monorepo): mostre o que detectou e pergunte qual perfil
    (ou combinação) aplicar.
@@ -43,12 +44,23 @@ automática.
    - `user-interactions.md` — telas/fluxos principais e o que o usuário faz em cada
      um (só no perfil frontend).
 
+   **Âncoras:** toda afirmação verificável carrega a fonte entre parênteses —
+   `"pedidos expiram em 30 dias (src/domain/Order.cs)"`. Isso muda o custo do
+   futuro sync de "procurar onde essa claim vive" (exploração cara) para "abrir o
+   arquivo apontado e conferir" (leitura direta).
+
 4. **Consolidar pendências** — liste em um bloco único tudo marcado como
    "Necessita validação".
 
-5. **Criar `.claude/context.yaml`** com um item por doc gerado, `covers` apontando
-   para os diretórios reais que cada um descreve (estreito é melhor que largo) —
-   formato completo em `forje-ai:forje-docs-sync`. `sync.last_synced_commit: null`.
+5. **Criar `.claude/context.yaml`** (schema v2 — formato completo em
+   `forje-ai:forje-docs-sync`) com um item por doc gerado:
+   - `covers` apontando para os diretórios reais que cada um descreve (estreito é
+     melhor que largo);
+   - `summary` de 1 linha (~20 tokens) com o que o doc afirma — é o que permite às
+     outras skills decidir relevância sem abrir o doc;
+   - `synced_commit` = HEAD **do momento da geração** (os docs acabaram de ser
+     escritos lendo este exato estado do código — gravar o hash agora poupa a
+     primeira auditoria integral).
 
 6. **`CLAUDE.md` enxuto** — se o repo não tiver, ofereça criar: resumo do projeto,
    ponteiros pros docs gerados, e a regra de manutenção (`--report`/`--apply`).
