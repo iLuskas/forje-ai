@@ -11,7 +11,7 @@ Skills pessoais disponíveis abaixo. Prefixo de invocação: `forje-ai:`.
 
 | Invocar | Gatilho | O que faz |
 |---------|---------|-----------|
-| `forje-ai:forje-flow-feature` | "adiciona", "cria", "implementa", "faz" algo num projeto pessoal | Ciclo enxuto: clarificar → plano (quando vale a pena) → implementar nas convenções do repo → testar |
+| `forje-ai:forje-flow-feature` | "adiciona", "cria", "implementa", "faz" algo num projeto pessoal | Ciclo enxuto: clarificar → plano (quando vale a pena; escala pra `forje-grilling` se a decisão ramificar) → implementar nas convenções do repo → testar |
 | `forje-ai:forje-code-review` | "revisa", "review", "confere meu código" | Revisão do diff — correção, simplicidade, segurança básica. Somente leitura |
 | `forje-ai:forje-docs-sync` | Início de tarefa que planeja a partir de docs vivos; fim de implementação; "os docs estão desatualizados" | Detecta drift entre `.claude/context.yaml` e o código; `--report` ou `--apply` |
 | `forje-ai:forje-docs-bootstrap` | Projeto sem docs vivos: "gera os contexts", "documenta esse projeto" | Detecta o perfil do projeto e gera o conjunto de docs adequado + `.claude/context.yaml` |

@@ -177,10 +177,12 @@ example requests and the skill they trigger:
 Drives a feature, bug fix, or refactor from request to tested code:
 understands the request, loads the project's `CLAUDE.md`/living docs (if
 any), decides whether it's worth pausing to sketch a plan before coding
-(trivial changes skip it; changes involving a design decision don't),
-implements following the conventions the repo already uses, and tests the
-happy path plus at least one failure case. No ticket, no external approval
-— just enough structure to avoid coding blind.
+(trivial changes skip it; changes involving a design decision don't — and
+if the decision opens branches that depend on each other, it escalates to
+`forje-grilling` instead of a single confirmation), implements following
+the conventions the repo already uses, and tests the happy path plus at
+least one failure case. No ticket, no external approval — just enough
+structure to avoid coding blind.
 
 ### `forje-code-review` — a second pair of eyes
 Read-only review of the current diff (or a specific branch). Lean

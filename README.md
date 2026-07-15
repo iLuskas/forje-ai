@@ -177,10 +177,11 @@ e a skill que eles disparam:
 Conduz uma feature, bug fix ou refactor do pedido até o código testado:
 entende o pedido, carrega o `CLAUDE.md`/docs vivos do projeto (se existirem),
 decide se vale a pena parar pra desenhar um plano antes de codar (mudança
-trivial não precisa; mudança com decisão de design, sim), implementa nas
-convenções que o próprio repo já usa, e testa caminho feliz + um caso de
-erro. Sem card, sem aprovação externa — só o suficiente pra não codar às
-cegas.
+trivial não precisa; mudança com decisão de design, sim — e se a decisão
+abrir ramificações dependentes entre si, escala pra `forje-grilling` em vez
+de uma confirmação única), implementa nas convenções que o próprio repo já
+usa, e testa caminho feliz + um caso de erro. Sem card, sem aprovação
+externa — só o suficiente pra não codar às cegas.
 
 ### `forje-code-review` — segundo par de olhos
 Revisão do diff atual (ou de um branch específico), somente leitura.
