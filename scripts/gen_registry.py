@@ -15,7 +15,22 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-import yaml
+try:
+    import yaml
+except ImportError:
+    sys.exit("requer PyYAML — rode `python -m pip install -r requirements.txt`")
+
+
+def _safe_console() -> None:
+    """Windows usa cp1252 por padrão; sem isso, qualquer char fora dela crasha o print."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
+
+_safe_console()
 
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS_DIR = ROOT / "skills"
@@ -80,13 +95,13 @@ def main() -> int:
     new_content = head + render_table(skills) + tail
 
     if new_content == content:
-        print("registry: atualizado ✓")
+        print("registry: atualizado")
         return 0
     if check:
-        print("registry: DEFASADO — rode `python scripts/gen_registry.py`")
+        print("registry: DEFASADO - rode `python scripts/gen_registry.py`")
         return 1
     REGISTRY.write_text(new_content, encoding="utf-8")
-    print("registry: regenerado ✓")
+    print("registry: regenerado")
     return 0
 
 

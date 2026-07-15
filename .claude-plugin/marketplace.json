@@ -8,7 +8,7 @@
     {
       "name": "forje-ai",
       "description": "Skills e atalhos pessoais de IA do iLuskas para projetos pessoais",
-      "version": "0.3.0",
+      "version": "0.4.2",
       "source": "./",
       "author": {
         "name": "iLuskas"

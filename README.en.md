@@ -59,17 +59,28 @@ there's no magic keyword or memorized command. Asking "review the code I
 just wrote" is enough for Claude to recognize that `forje-code-review`
 applies and load its full content only at that moment.
 
-One thing this plugin deliberately does **not** do: force-load the skill
-index on every session via a `SessionStart` hook. `forje-registry` is just
-another skill; Claude invokes it when it makes sense (for example, if you
-ask "what skills do I have available here?"). That's intentional — it keeps
-the plugin simple and avoids a fixed token cost every session. If I ever
-want that guarantee, it's a matter of adding a `hooks/hooks.json` — see
-[Roadmap](#roadmap--future-ideas).
+The plugin ships a `SessionStart` hook (`hooks/session_start.py`), but it
+follows the same cost discipline as everything else: it's a **drift
+sentinel**, not a context loader. At every session start it runs `git`
+locally (computation, zero tokens) against the project's
+`.claude/context.yaml`; if the living docs are up to date — or the project
+has no manifest at all — it injects **nothing**. Only when there are commits
+in covered areas since the last sync does a ~2-line warning appear,
+suggesting `forje-docs-sync --report`. The skills index is still **not**
+force-loaded: `forje-registry` remains just another skill, invoked when it
+makes sense.
 
 ## Installation
 
-Prerequisite: [Claude Code](https://claude.com/claude-code) installed.
+Prerequisites:
+
+- [Claude Code](https://claude.com/claude-code) installed;
+- Python 3 with PyYAML — `python -m pip install -r requirements.txt` (or
+  `pip install pyyaml`). It's used by the maintenance scripts
+  (`scripts/validate.py`, `scripts/gen_registry.py`) and by the
+  `SessionStart` hook. **Without PyYAML the plugin still works, but the
+  drift sentinel is silently disabled** — the hook prefers staying quiet
+  over breaking your session.
 
 ### 1. Have the repo somewhere Claude Code can reach
 
@@ -244,16 +255,22 @@ doc files, which are orders of magnitude smaller than the full codebase.
 
 **What `forje-docs-sync` does on top of that.** Instead of re-reading the
 full docs against the full code every time (which would still be
-expensive), it keeps a marker (`sync.last_synced_commit`) and only looks at
-the **diff** since the last sync — `git log`/`git diff` over a handful of
-files, not a full audit. Drift is the exception, not the rule: most
-sessions don't touch anything the docs cover, so `--report` finishes in
-seconds without spending tokens reading unchanged code.
+expensive), each doc keeps its own marker (`synced_commit`, in the v2 manifest) and the
+sync only looks at that doc's **diff** since it was last checked —
+`git log`/`git diff` over a handful of files, not a full audit. A doc
+covering a cold area isn't re-checked just because a hot area changed.
+Drift is the exception, not the rule: most sessions don't touch anything
+the docs cover, so `--report` finishes in seconds without spending tokens
+reading unchanged code. Doc claims carry anchors (`"orders expire in 30
+days (src/domain/Order.cs)"`), so verifying a claim means opening the file
+it points to, not hunting the codebase for where it lives.
 
 **What `.claude/context.yaml` does on top of that.** Each doc declares which
-folders (`covers`) it describes. When a skill like `forje-flow-feature`
-needs context, it cross-references the requested task with that mapping
-and loads **only the relevant docs** for that change — not the whole set. A
+folders (`covers`) it describes plus a one-line `summary` (~20 tokens) of
+what it claims. When a skill like `forje-flow-feature` needs context, it
+cross-references the requested task with that mapping and loads **only the
+relevant docs** for that change — not the whole set; a tie on `covers` is
+broken by reading the `summary`, without opening any doc. A
 task that only touches the payment module doesn't pull in the
 authentication doc alongside it. This keeps the context window lean even in
 projects with many accumulated docs.
@@ -262,8 +279,15 @@ Summing up the chain: **bootstrap** trades "read the code every session" for
 "read the docs every session" (much cheaper) → **incremental sync** trades
 "re-read everything" for "re-read only what changed" (cheaper still) →
 **manifest with `covers`** trades "load every doc" for "load only the docs
-relevant to the task" (leaving the rest of the context budget for the code
-itself, which is what actually matters during implementation).
+relevant to the task" → **`summary` in the manifest** trades "open the doc
+to find out whether you needed it" for "decide by reading one line of
+metadata" (leaving the rest of the context budget for the code itself,
+which is what actually matters during implementation).
+
+> The full manifest format (schema v2) is documented in
+> `skills/forje-docs-sync/SKILL.md`. Old manifests (v1, with a global
+> `sync.last_synced_commit`) are still understood: `--report` warns you and
+> `--apply` migrates automatically.
 
 ## Repo structure
 
@@ -272,6 +296,14 @@ forje-ai/
 ├── .claude-plugin/
 │   ├── plugin.json         # plugin manifest (name, version, description)
 │   └── marketplace.json    # marketplace manifest (how to install)
+├── .github/workflows/
+│   └── validate.yml        # CI: validates frontmatters, versions and registry
+├── scripts/
+│   ├── validate.py         # local validation (same checks as CI)
+│   └── gen_registry.py     # generates the forje-registry table from frontmatters
+├── hooks/
+│   ├── hooks.json          # registers the SessionStart hook
+│   └── session_start.py    # drift sentinel: only speaks when there is drift
 ├── skills/
 │   ├── forje-registry/         # index — read this first to see what exists
 │   ├── forje-flow-feature/     # implement without process
@@ -293,16 +325,20 @@ forje-ai/
 2. Follow the structure and checklist in `forje-skill-authoring` — short
    body, numbered steps, hard rules only when there's something that should
    never happen.
-3. List the skill in the table in `skills/forje-registry/SKILL.md`.
+3. Run `python scripts/gen_registry.py` — the `forje-registry` table is
+   generated from the frontmatters, not edited by hand.
 4. If the change is something worth distributing (new skill, behavior
    tweak), bump the version in `.claude-plugin/plugin.json` **and**
    `.claude-plugin/marketplace.json` (same number in both) — that's what
    lets anyone who already installed it notice there's an update.
+5. Run `python scripts/validate.py` before committing — the same checks CI
+   runs (valid frontmatter, `name` == directory, matching versions,
+   registry up to date). A broken frontmatter makes the skill silently
+   disappear from the picker; the validator turns that into a visible
+   error.
 
 ## Roadmap / future ideas
 
-- `hooks/` with `SessionStart` — in case I ever want the skill index to
-  always load, instead of relying on description-based recognition.
 - A new-project setup skill (`forje-flow-init`?) — scaffolding for a
   preferred language/framework, already wired with `.gitignore`, lint, and
   test config.

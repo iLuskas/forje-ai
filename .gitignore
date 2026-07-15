@@ -1,2 +1,5 @@
 .claude/state/
 task.md
+# Python
+__pycache__/
+*.pyc

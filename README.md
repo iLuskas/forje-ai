@@ -69,7 +69,15 @@ sessão. Se um dia eu quiser essa garantia, é questão de adicionar um
 
 ## Instalação
 
-Pré-requisito: [Claude Code](https://claude.com/claude-code) instalado.
+Pré-requisitos:
+
+- [Claude Code](https://claude.com/claude-code) instalado;
+- Python 3 com PyYAML — `python -m pip install -r requirements.txt` (ou
+  `pip install pyyaml`). É usado pelos scripts de manutenção
+  (`scripts/validate.py`, `scripts/gen_registry.py`) e pelo hook de
+  `SessionStart`. **Sem PyYAML o plugin funciona, mas a sentinela de drift
+  fica silenciosamente desativada** — o hook prefere calar a quebrar sua
+  sessão.
 
 ### 1. Tenha o repo em algum lugar que o Claude Code alcance
 
@@ -242,27 +250,40 @@ projeto não exige mais ler o código inteiro — basta ler 3 ou 4 arquivos de
 doc, que são ordens de magnitude menores que a base de código completa.
 
 **O que o `forje-docs-sync` faz com isso.** Em vez de reler os docs inteiros
-contra o código inteiro a cada vez (o que ainda seria caro), ele guarda um
-marcador (`sync.last_synced_commit`) e só olha o **diff** desde a última
-sincronização — `git log`/`git diff` num punhado de arquivos, não uma
-auditoria completa. Drift é a exceção, não a regra: a maior parte das
-sessões não muda nada que os docs cobrem, então o `--report` termina em
-segundos e sem gastar tokens lendo código que não mudou.
+contra o código inteiro a cada vez (o que ainda seria caro), cada doc guarda
+seu próprio marcador (`synced_commit`, no manifest v2) e o sync só olha o
+**diff** daquele doc desde a última conferência — `git log`/`git diff` num
+punhado de arquivos, não uma auditoria completa. Doc de área fria não é
+re-checado porque uma área quente mudou. Drift é a exceção, não a regra: a
+maior parte das sessões não muda nada que os docs cobrem, então o `--report`
+termina em segundos e sem gastar tokens lendo código que não mudou. As
+afirmações dos docs carregam âncoras (`"pedidos expiram em 30 dias
+(src/domain/Order.cs)"`), então verificar uma claim é abrir o arquivo
+apontado, não caçar no código onde ela vive.
 
 **O que o `.claude/context.yaml` faz com isso.** Cada doc declara quais
-pastas (`covers`) ele descreve. Quando uma skill como `forje-flow-feature`
-precisa de contexto, ela cruza a tarefa pedida com esse mapeamento e carrega
-**só os docs relevantes** para aquela mudança — não o conjunto inteiro. Uma
-tarefa que mexe só no módulo de pagamento não carrega o doc de autenticação
-junto. Isso mantém a janela de contexto enxuta mesmo em projetos com muitos
-documentos acumulados.
+pastas (`covers`) ele descreve e um `summary` de uma linha (~20 tokens) com o
+que ele afirma. Quando uma skill como `forje-flow-feature` precisa de
+contexto, ela cruza a tarefa pedida com esse mapeamento e carrega **só os
+docs relevantes** para aquela mudança — não o conjunto inteiro; empate no
+`covers` se resolve lendo o `summary`, sem abrir doc nenhum. Uma tarefa que
+mexe só no módulo de pagamento não carrega o doc de autenticação junto. Isso
+mantém a janela de contexto enxuta mesmo em projetos com muitos documentos
+acumulados.
 
 Resumindo a cadeia: **bootstrap** troca "ler código toda sessão" por "ler
 docs toda sessão" (muito mais barato) → **sync incremental** troca "reler
 tudo" por "reler só o que mudou" (mais barato ainda) → **manifest com
 `covers`** troca "carregar todos os docs" por "carregar só os docs
-relevantes à tarefa" (o resto do orçamento de contexto sobra pro código em
-si, que é o que realmente importa numa implementação).
+relevantes à tarefa" → **`summary` no manifest** troca "abrir o doc pra saber
+se precisava dele" por "decidir lendo uma linha de metadado" (o resto do
+orçamento de contexto sobra pro código em si, que é o que realmente importa
+numa implementação).
+
+> O formato completo do manifest (schema v2) está documentado em
+> `skills/forje-docs-sync/SKILL.md`. Manifest antigo (v1, com
+> `sync.last_synced_commit` global) ainda é entendido: o `--report` avisa e o
+> `--apply` migra automaticamente.
 
 ## Estrutura do repo
 
@@ -276,6 +297,9 @@ forje-ai/
 ├── scripts/
 │   ├── validate.py         # validação local (mesma do CI)
 │   └── gen_registry.py     # gera a tabela do forje-registry dos frontmatters
+├── hooks/
+│   ├── hooks.json          # registra o hook de SessionStart
+│   └── session_start.py    # sentinela de drift: só fala se houver drift
 ├── skills/
 │   ├── forje-registry/         # índice — leia primeiro pra saber o que existe
 │   ├── forje-flow-feature/     # implementar sem processo

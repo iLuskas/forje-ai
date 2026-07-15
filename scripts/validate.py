@@ -19,7 +19,22 @@ import subprocess
 import sys
 from pathlib import Path
 
-import yaml
+try:
+    import yaml
+except ImportError:
+    sys.exit("requer PyYAML — rode `python -m pip install -r requirements.txt`")
+
+
+def _safe_console() -> None:
+    """Windows usa cp1252 por padrão; sem isso, qualquer char fora dela crasha o print."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
+
+_safe_console()
 
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS_DIR = ROOT / "skills"
@@ -76,6 +91,8 @@ def check_registry() -> None:
         [sys.executable, str(ROOT / "scripts" / "gen_registry.py"), "--check"],
         capture_output=True,
         text=True,
+        encoding="utf-8",
+        errors="replace",
     )
     if r.returncode != 0:
         errors.append(f"registry defasado: {r.stdout.strip() or r.stderr.strip()}")
@@ -88,9 +105,9 @@ def main() -> int:
     if errors:
         print("FALHOU:")
         for e in errors:
-            print(f"  ✗ {e}")
+            print(f"  x {e}")
         return 1
-    print("validate: tudo ok ✓")
+    print("validate: tudo ok")
     return 0
 
 
