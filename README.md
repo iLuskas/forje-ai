@@ -271,6 +271,11 @@ forje-ai/
 ├── .claude-plugin/
 │   ├── plugin.json         # manifesto do plugin (nome, versão, descrição)
 │   └── marketplace.json    # manifesto do marketplace (como instalar)
+├── .github/workflows/
+│   └── validate.yml        # CI: valida frontmatters, versões e registry
+├── scripts/
+│   ├── validate.py         # validação local (mesma do CI)
+│   └── gen_registry.py     # gera a tabela do forje-registry dos frontmatters
 ├── skills/
 │   ├── forje-registry/         # índice — leia primeiro pra saber o que existe
 │   ├── forje-flow-feature/     # implementar sem processo

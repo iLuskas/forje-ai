@@ -36,9 +36,11 @@ Detalhe extenso vai para `references/` — não infle o corpo principal do
 - [ ] Frontmatter é YAML válido — cuidado com `: ` sem aspas dentro da
       `description`, que quebra o parser. Use `—` no lugar ou envolva em aspas.
 - [ ] `description` responde "quando invocar?" sem precisar abrir o corpo.
-- [ ] Registrada na tabela de `skills/forje-registry/SKILL.md`.
+- [ ] Rodou `python scripts/gen_registry.py` (a tabela do registry é gerada,
+      não editada à mão).
 - [ ] Se mudou algo distribuído, bump de versão em `.claude-plugin/plugin.json`
       e `marketplace.json` (mesmo número).
+- [ ] `python scripts/validate.py` verde — valida tudo acima de uma vez.
 - [ ] Não duplica skill existente — gatilho colidindo, edite a existente.
 
 ## Regras duras

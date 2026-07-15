@@ -9,14 +9,18 @@ Skills pessoais disponíveis abaixo. Prefixo de invocação: `forje-ai:`.
 
 ## Skills
 
-| Invocar | Gatilho | O que faz |
-|---------|---------|-----------|
-| `forje-ai:forje-flow-feature` | "adiciona", "cria", "implementa", "faz" algo num projeto pessoal | Ciclo enxuto: clarificar → plano (quando vale a pena; escala pra `forje-grilling` se a decisão ramificar) → implementar nas convenções do repo → testar |
-| `forje-ai:forje-code-review` | "revisa", "review", "confere meu código" | Revisão do diff — correção, simplicidade, segurança básica. Somente leitura |
-| `forje-ai:forje-docs-sync` | Início de tarefa que planeja a partir de docs vivos; fim de implementação; "os docs estão desatualizados" | Detecta drift entre `.claude/context.yaml` e o código; `--report` ou `--apply` |
-| `forje-ai:forje-docs-bootstrap` | Projeto sem docs vivos: "gera os contexts", "documenta esse projeto" | Detecta o perfil do projeto e gera o conjunto de docs adequado + `.claude/context.yaml` |
-| `forje-ai:forje-grilling` | "me grilla sobre X", "quero stress-testar essa decisão antes de codar" | Entrevista uma pergunta por vez, com recomendação, até entendimento compartilhado |
-| `forje-ai:forje-skill-authoring` | "cria uma skill", "nova skill", editar skill existente | Convenções de nomenclatura e estrutura para skills deste plugin |
+<!-- BEGIN GENERATED (scripts/gen_registry.py) — não edite à mão -->
+
+| Invocar | O que faz / quando usar |
+|---------|--------------------------|
+| `forje-ai:forje-code-review` | Revisão de código para projetos pessoais — correção, aderência às convenções do repositório, simplicidade e segurança básica — sobre o diff atual. Somente leitura. Use quando pedirem "revisa", "review", "confere meu código", ou antes de commitar/abrir PR num projeto pessoal. |
+| `forje-ai:forje-docs-bootstrap` | Gera do zero os docs vivos de um projeto pessoal que ainda não tem documentação de contexto — detecta o perfil (API/backend .NET, Node, Python, frontend React) e gera o conjunto de docs adequado, terminando com o .claude/context.yaml criado. Use quando pedirem "gera os contexts", "documenta esse projeto", "cria o context.md", ou quando um projeto pessoal sem docs vivos precisar aderir ao padrão. |
+| `forje-ai:forje-docs-sync` | Motor de sincronização de documentação viva para projetos pessoais. Detecta divergências entre os docs declarados no .claude/context.yaml do repositório e o código atual, e reporta (--report) ou corrige (--apply). Use no início de uma tarefa que vá planejar a partir de docs vivos, ao final de uma implementação que muda comportamento documentado, ou quando suspeitar que os docs estão desatualizados. |
+| `forje-ai:forje-flow-feature` | Implementa uma feature, bug fix ou refactor em um projeto pessoal — o usuário descreve a mudança direto ou aponta um arquivo de task. Use quando pedirem "adiciona", "cria", "implementa", "faz" algo em um projeto pessoal. Ciclo enxuto — clarificar → plano (quando vale a pena) → implementar nas convenções do repo → testar. |
+| `forje-ai:forje-grilling` | Interroga o usuário sobre um plano, decisão ou ideia até alcançar entendimento compartilhado — uma pergunta por vez, sempre com uma recomendação, sem agir até confirmação explícita. Use quando pedirem para "stress-testar" uma decisão, disserem "me grilla sobre X", "quero validar essa ideia antes de codar", ou quando outra skill deste plugin encontrar uma decisão não-trivial no passo de clarificação. |
+| `forje-ai:forje-skill-authoring` | Convenções para criar ou editar skills pessoais neste plugin (forje-*). Use quando pedirem para criar, alterar ou padronizar uma skill pessoal. |
+
+<!-- END GENERATED -->
 
 ## Como escolher
 
