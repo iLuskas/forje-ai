@@ -1,5 +1,7 @@
 # forje-ai
 
+🇧🇷 Português | [🇺🇸 English](./README.en.md)
+
 > Plugin pessoal de skills para o [Claude Code](https://claude.com/claude-code) — meu jeito de trabalhar em projetos pessoais, empacotado para eu levar de repo em repo (e emprestar pra quem quiser).
 
 Isso não carrega nenhuma regra de compliance, LGPD ou processo corporativo —
@@ -276,7 +278,8 @@ forje-ai/
 │   ├── forje-docs-bootstrap/   # gera docs vivos do zero
 │   ├── forje-grilling/         # entrevista antes de decisão não-trivial
 │   └── forje-skill-authoring/  # como criar uma skill nova aqui
-└── README.md
+├── README.md        # este arquivo, em português
+└── README.en.md      # versão em inglês
 ```
 
 ## Como adicionar uma skill nova
