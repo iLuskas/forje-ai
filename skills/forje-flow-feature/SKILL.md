@@ -23,6 +23,10 @@ codar às cegas nem quebrar o que já existe.
    3. Sem nenhum dos dois: olhada rápida na estrutura (linguagem, framework,
       testes) antes de decidir como implementar — e, ao fechar a tarefa, sugira
       `forje-ai:forje-docs-bootstrap` para a próxima sessão já começar barata.
+
+   Em qualquer nível: se o projeto tiver um índice de código disponível
+   (codegraph, graphify ou similar, via MCP), prefira consultá-lo a explorar
+   arquivos crus — uma tool call no índice substitui um loop de grep/read.
 3. **Plano — só quando a mudança não é óbvia** — se for trivial (ajuste pequeno,
    1-2 arquivos), pode ir direto pra implementação. Se envolver decisão de design,
    múltiplos arquivos, ou migração de dado, esboce o plano (arquivos afetados,

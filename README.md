@@ -67,6 +67,43 @@ Isso é proposital: mantém o plugin simples e sem custo de token fixo por
 sessão. Se um dia eu quiser essa garantia, é questão de adicionar um
 `hooks/hooks.json` — ver [Roadmap](#roadmap--ideias-futuras).
 
+## O processo de forja
+
+O nome não é enfeite. O forje-ai trata um projeto como um ferreiro trata uma
+lâmina: cada skill é uma etapa do ofício, e a ordem importa.
+
+| Etapa da forja | Skill | O que acontece |
+|---|---|---|
+| 🔥 **Aquecer o metal bruto** | `forje-docs-bootstrap` | O repo cru vira material trabalhável: docs vivos, manifest, âncoras. Sem aquecer, todo golpe de martelo custa o dobro. |
+| 🧪 **Provar no fogo** | `forje-grilling` | Antes de martelar, a ideia vai à brasa: o plano é interrogado até sobrar só o que aguenta o calor. |
+| 🔨 **Martelar e moldar** | `forje-flow-feature` | A implementação em si — cada golpe guiado pelo contexto certo (`covers`/`summary`), nunca no escuro. |
+| 🔍 **Inspecionar a lâmina** | `forje-code-review` | Olho de mestre no diff: read-only, evidência em mão, sem marteladas por impulso. |
+| ⚔️ **Manter o fio** | `forje-docs-sync` | Lâmina sem manutenção perde o corte; doc sem sync perde a verdade. O fio se refaz a cada mudança. |
+| 🧰 **A bancada** | `forje-registry` | O quadro de ferramentas na parede: o que existe e quando pegar cada uma. |
+| ⚒️ **Forjar as ferramentas** | `forje-skill-authoring` | A forja que forja a si mesma: novas skills nascem aqui, nas mesmas convenções. |
+| 👁️ **O aprendiz de olho** | hook `SessionStart` | Fica na porta da oficina: só fala quando a lâmina perdeu o fio (drift). Silêncio custa zero. |
+
+Uma disciplina deliberada: **a metáfora vive aqui no README, não dentro das
+skills**. Todo token dentro de um SKILL.md é pago quando a skill carrega; poesia
+lá seria custo sem sinal. O ferreiro decora a oficina — nunca a lâmina.
+
+## Números honestos
+
+Inspirado no `HONEST-NUMBERS.md` do caveman: dizer o que é medido e o que é
+hipótese.
+
+- **Medido:** nada ainda. As afirmações de economia deste README derivam de
+  aritmética de custos (o que entra no contexto e quantas vezes), não de
+  benchmark próprio.
+- **Hipótese central (testável):** docs vivos com `covers`/`summary`/âncoras
+  previnem re-exploração — a maior fonte de gasto em trabalho agêntico. Um
+  loop de grep/read evitado (~5–50k tokens) paga semanas do overhead fixo do
+  plugin (~0,5–1k tokens/sessão em descriptions).
+- **Como validar:** rodar 1–2 semanas com [codeburn](https://github.com/getagentseal/codeburn)
+  observando arquivos relidos entre sessões, custo por sessão e taxa one-shot,
+  antes e depois da adoção. Quando houver números, eles entram aqui —
+  inclusive se forem ruins.
+
 ## Instalação
 
 Pré-requisitos:

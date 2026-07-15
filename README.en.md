@@ -70,6 +70,44 @@ suggesting `forje-docs-sync --report`. The skills index is still **not**
 force-loaded: `forje-registry` remains just another skill, invoked when it
 makes sense.
 
+## The forging process
+
+The name isn't decoration. forje-ai treats a project the way a blacksmith
+treats a blade: each skill is a stage of the craft, and order matters.
+
+| Forging stage | Skill | What happens |
+|---|---|---|
+| 🔥 **Heat the raw metal** | `forje-docs-bootstrap` | The raw repo becomes workable material: living docs, manifest, anchors. Skip the heat and every hammer blow costs double. |
+| 🧪 **Prove it in the fire** | `forje-grilling` | Before hammering, the idea goes to the coals: the plan is interrogated until only what survives the heat remains. |
+| 🔨 **Hammer and shape** | `forje-flow-feature` | The implementation itself — every blow guided by the right context (`covers`/`summary`), never in the dark. |
+| 🔍 **Inspect the blade** | `forje-code-review` | A master's eye on the diff: read-only, evidence in hand, no impulsive hammering. |
+| ⚔️ **Keep the edge** | `forje-docs-sync` | An unmaintained blade loses its edge; an unsynced doc loses its truth. The edge is redrawn after every change. |
+| 🧰 **The workbench** | `forje-registry` | The tool board on the wall: what exists and when to reach for each. |
+| ⚒️ **Forge the tools** | `forje-skill-authoring` | The forge that forges itself: new skills are born here, under the same conventions. |
+| 👁️ **The watchful apprentice** | `SessionStart` hook | Stands at the workshop door: speaks only when the blade has lost its edge (drift). Silence costs zero. |
+
+A deliberate discipline: **the metaphor lives here in the README, not inside
+the skills**. Every token inside a SKILL.md is paid when the skill loads;
+poetry there would be cost without signal. The blacksmith decorates the
+workshop — never the blade.
+
+## Honest numbers
+
+Inspired by caveman's `HONEST-NUMBERS.md`: say what is measured and what is
+hypothesis.
+
+- **Measured:** nothing yet. The savings claims in this README derive from
+  cost arithmetic (what enters the context and how often), not from our own
+  benchmarks.
+- **Core (testable) hypothesis:** living docs with `covers`/`summary`/anchors
+  prevent re-exploration — the largest cost source in agentic work. One
+  avoided grep/read loop (~5–50k tokens) pays for weeks of the plugin's fixed
+  overhead (~0.5–1k tokens/session in descriptions).
+- **How to validate:** run 1–2 weeks with [codeburn](https://github.com/getagentseal/codeburn)
+  watching files re-read across sessions, cost per session, and one-shot rate,
+  before and after adoption. When numbers exist they go here — even if they
+  are bad.
+
 ## Installation
 
 Prerequisites:

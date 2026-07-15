@@ -62,12 +62,16 @@ de passagem vira relatório para decisão manual.
    explicitamente — é caro e sujeito a falso positivo.
 4. **Comparar por doc com diff** — confronte as afirmações do doc com o código
    atual lido agora. Claims com âncora `(arquivo)` verificam-se abrindo o arquivo
-   apontado; claims sem âncora exigem busca — ao corrigi-las em `--apply`,
-   adicione a âncora para baratear o próximo sync.
+   apontado; claims sem âncora exigem busca — se o projeto tiver um índice de
+   código disponível (codegraph, graphify ou similar, via MCP), prefira
+   consultá-lo a caçar com grep/read; e ao corrigi-las em `--apply`, adicione a
+   âncora para baratear o próximo sync.
 5. **Classificar** — `desatualizado` (doc afirma algo que o código não faz mais),
    `lacuna` (código novo sem doc), `erro` (doc nunca esteve certo).
 6. **Agir conforme o modo** — reportar em tabela (doc, seção, divergência,
-   evidência) ou aplicar as correções preservando estilo/estrutura do doc.
+   evidência) ou aplicar as correções preservando estilo/estrutura do doc, no
+   mesmo estilo denso do bootstrap: claims diretas com âncora, sem prosa de
+   preenchimento — mas nunca comprimido a ponto de ficar ambíguo.
 7. **Atualizar metadados** — só em `--apply`: `synced_commit` ← HEAD **apenas dos
    docs conferidos nesta sessão**; se a correção mudou o que o doc afirma,
    atualize o `summary` na mesma passada.

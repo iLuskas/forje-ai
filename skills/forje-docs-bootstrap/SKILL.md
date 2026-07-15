@@ -44,6 +44,13 @@ automática.
    - `user-interactions.md` — telas/fluxos principais e o que o usuário faz em cada
      um (só no perfil frontend).
 
+   **Estilo de escrita — densidade, não taquigrafia:** os docs serão relidos em
+   dezenas de sessões futuras; cada token de preenchimento é pago para sempre.
+   Corte prosa vazia ("o sistema foi cuidadosamente projetado para..."), escreva
+   claims diretas. MAS nunca comprima a ponto de gerar ambiguidade: instrução
+   ambígua causa retry, e um retry custa mais que 500 tokens de clareza. Máxima
+   taxa de sinal por token, não mínimo de tokens.
+
    **Âncoras:** toda afirmação verificável carrega a fonte entre parênteses —
    `"pedidos expiram em 30 dias (src/domain/Order.cs)"`. Isso muda o custo do
    futuro sync de "procurar onde essa claim vive" (exploração cara) para "abrir o
