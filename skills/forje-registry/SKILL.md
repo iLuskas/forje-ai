@@ -1,6 +1,6 @@
 ---
 name: forje-registry
-description: Índice das minhas skills pessoais (Lucas Fernandes) para projetos fora da Tasken. Use para decidir qual skill invocar para uma tarefa.
+description: Índice das minhas skills pessoais (Lucas Fernandes) para projetos pessoais. Use para decidir qual skill invocar para uma tarefa.
 ---
 
 # forje-ai — Registry de skills

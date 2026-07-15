@@ -2,12 +2,10 @@
 
 > Plugin pessoal de skills para o [Claude Code](https://claude.com/claude-code) — meu jeito de trabalhar em projetos pessoais, empacotado para eu levar de repo em repo (e emprestar pra quem quiser).
 
-Isso **não é** um produto da Tasken nem carrega nenhuma regra de compliance,
-LGPD ou processo corporativo. É o oposto: peguei o que aprendi montando o
-plugin de IA usado no meu trabalho e destilei só a parte que faz sentido para
-projeto pessoal — sem card, sem aprovação de terceiros, sem checklist de
-auditoria. Se você chegou aqui pela Tasken, o repo que você quer é outro; este
-é de uso livre, sinta-se à vontade para clonar, alterar e distribuir.
+Isso não carrega nenhuma regra de compliance, LGPD ou processo corporativo —
+é feito pra projeto pessoal: sem card, sem aprovação de terceiros, sem
+checklist de auditoria. Uso livre: sinta-se à vontade pra clonar, alterar e
+distribuir.
 
 ## Sumário
 
@@ -59,10 +57,9 @@ existe palavra-chave mágica nem comando decorado. Pedir "revisa esse código
 pra mim" já é o suficiente para o Claude reconhecer que a `forje-code-review`
 se aplica e carregar o conteúdo completo dela só nesse momento.
 
-Diferença importante em relação ao plugin que eu uso no trabalho: lá existe
-um hook de `SessionStart` que **força** a leitura do índice de skills em toda
-sessão, porque em ambiente de time isso precisa ser garantido. Aqui não —
-`forje-registry` é só mais uma skill; o Claude a invoca quando faz sentido
+Uma coisa que este plugin **não** faz: forçar a leitura do índice de skills
+em toda sessão via hook de `SessionStart`. `forje-registry` é só mais uma
+skill; o Claude a invoca quando faz sentido
 (por exemplo, se você perguntar "quais skills eu tenho disponíveis aqui?").
 Isso é proposital: mantém o plugin simples e sem custo de token fixo por
 sessão. Se um dia eu quiser essa garantia, é questão de adicionar um
@@ -86,7 +83,7 @@ git clone https://github.com/<seu-usuario>/forje-ai.git
 Dentro de uma sessão do Claude Code (em qualquer diretório):
 
 ```
-/plugin marketplace add C:/Users/lfernandes/source/repos/forje-ai
+/plugin marketplace add C:/caminho/onde/voce/clonou/forje-ai
 ```
 
 — ou, se for a partir do GitHub:
@@ -218,9 +215,8 @@ depois que não sobra ambiguidade nenhuma.
 
 ### `forje-skill-authoring` — como criar uma skill nova neste plugin
 Meta-skill: convenções de nome, estrutura de arquivo, formato do
-frontmatter e o checklist que eu sigo antes de considerar uma skill pronta
-(sem o aparato de compliance da versão Tasken — aqui é só clareza e
-consistência).
+frontmatter e o checklist que eu sigo antes de considerar uma skill pronta —
+sem aparato de compliance, só clareza e consistência.
 
 ## Por que "docs vivos" economiza token (e tempo)
 

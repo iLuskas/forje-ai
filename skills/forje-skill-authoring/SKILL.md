@@ -7,7 +7,7 @@ description: Convenções para criar ou editar skills pessoais neste plugin (for
 
 Skill boa é a que dá pra invocar sem reler o código-fonte dela. Estas convenções
 mantêm as skills pessoais previsíveis e fáceis de manter — versão enxuta do
-processo, sem aparato de compliance (isso é coisa do plugin da Tasken).
+processo, sem aparato de compliance.
 
 ## Estrutura
 
