@@ -1,6 +1,6 @@
 ---
 name: forje-flow-feature
-description: Implementa uma feature, bug fix ou refactor em um projeto pessoal — o Lucas descreve a mudança direto ou aponta um arquivo de task. Use quando ele pedir "adiciona", "cria", "implementa", "faz" algo em um projeto pessoal. Ciclo enxuto — clarificar → plano (quando vale a pena) → implementar nas convenções do repo → testar.
+description: Implementa uma feature, bug fix ou refactor em um projeto pessoal — o usuário descreve a mudança direto ou aponta um arquivo de task. Use quando pedirem "adiciona", "cria", "implementa", "faz" algo em um projeto pessoal. Ciclo enxuto — clarificar → plano (quando vale a pena) → implementar nas convenções do repo → testar.
 ---
 
 # Feature sem processo

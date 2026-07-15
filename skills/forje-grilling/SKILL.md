@@ -1,6 +1,6 @@
 ---
 name: forje-grilling
-description: Interroga o Lucas sobre um plano, decisão ou ideia até alcançar entendimento compartilhado — uma pergunta por vez, sempre com uma recomendação, sem agir até confirmação explícita. Use quando ele pedir para "stress-testar" uma decisão, disser "me grilla sobre X", "quero validar essa ideia antes de codar", ou quando outra skill deste plugin encontrar uma decisão não-trivial no passo de clarificação.
+description: Interroga o usuário sobre um plano, decisão ou ideia até alcançar entendimento compartilhado — uma pergunta por vez, sempre com uma recomendação, sem agir até confirmação explícita. Use quando pedirem para "stress-testar" uma decisão, disserem "me grilla sobre X", "quero validar essa ideia antes de codar", ou quando outra skill deste plugin encontrar uma decisão não-trivial no passo de clarificação.
 ---
 
 # Grilling
@@ -17,7 +17,7 @@ decisão até não sobrar ambiguidade.
    mentalmente quais escolhas o plano/ideia exige e quais dependem de outras.
 2. **Resolver sozinho o que for descobrível** — o que estiver no código, configs,
    docs do repo ou histórico do git, investigue antes de perguntar. Só leve ao
-   Lucas o que for de fato uma escolha dele.
+   usuário o que for de fato uma escolha dele.
 3. **Perguntar uma de cada vez** — apresente a pergunta junto da sua recomendação e
    o porquê. Aguarde a resposta antes de formular a próxima. Nunca empacote duas
    perguntas na mesma mensagem.
@@ -32,6 +32,6 @@ decisão até não sobrar ambiguidade.
 
 - Nunca faça duas perguntas na mesma mensagem.
 - Nunca pergunte o que já é descobrível no ambiente (arquivo, config, git log) —
-  investigue antes de levar ao Lucas.
+  investigue antes de levar ao usuário.
 - Nunca comece a agir sobre o plano/decisão antes da confirmação explícita.
 - Sempre traga uma recomendação junto de cada pergunta.

@@ -1,6 +1,6 @@
 ---
 name: forje-skill-authoring
-description: Convenções para criar ou editar skills pessoais neste plugin (forje-*). Use quando o Lucas pedir para criar, alterar ou padronizar uma skill pessoal.
+description: Convenções para criar ou editar skills pessoais neste plugin (forje-*). Use quando pedirem para criar, alterar ou padronizar uma skill pessoal.
 ---
 
 # Autoria de skills — forje-ai

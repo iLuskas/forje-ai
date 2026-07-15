@@ -1,6 +1,6 @@
 ---
 name: forje-docs-bootstrap
-description: Gera do zero os docs vivos de um projeto pessoal que ainda não tem documentação de contexto — detecta o perfil (API/backend .NET, Node, Python, frontend React) e gera o conjunto de docs adequado, terminando com o .claude/context.yaml criado. Use quando o Lucas pedir "gera os contexts", "documenta esse projeto", "cria o context.md", ou quando um projeto pessoal sem docs vivos precisar aderir ao padrão.
+description: Gera do zero os docs vivos de um projeto pessoal que ainda não tem documentação de contexto — detecta o perfil (API/backend .NET, Node, Python, frontend React) e gera o conjunto de docs adequado, terminando com o .claude/context.yaml criado. Use quando pedirem "gera os contexts", "documenta esse projeto", "cria o context.md", ou quando um projeto pessoal sem docs vivos precisar aderir ao padrão.
 ---
 
 # Docs Bootstrap (gerar documentação viva do zero)

@@ -1,6 +1,6 @@
 ---
 name: forje-code-review
-description: Revisão de código para projetos pessoais — correção, aderência às convenções do repositório, simplicidade e segurança básica — sobre o diff atual. Somente leitura. Use quando o Lucas pedir "revisa", "review", "confere meu código", ou antes de commitar/abrir PR num projeto pessoal.
+description: Revisão de código para projetos pessoais — correção, aderência às convenções do repositório, simplicidade e segurança básica — sobre o diff atual. Somente leitura. Use quando pedirem "revisa", "review", "confere meu código", ou antes de commitar/abrir PR num projeto pessoal.
 ---
 
 # Code Review pessoal
@@ -10,7 +10,7 @@ mais comuns — sem checklist corporativo.
 
 ## Escopo do diff
 
-Nesta ordem: o que o Lucas apontar; senão `git diff` (staged + unstaged); senão
+Nesta ordem: o que o usuário apontar; senão `git diff` (staged + unstaged); senão
 `git diff <branch-base>...HEAD`.
 
 ## Fluxo

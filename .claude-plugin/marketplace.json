@@ -1,17 +1,17 @@
 {
   "name": "forje-ai",
-  "description": "Skills pessoais de IA do Lucas Fernandes",
+  "description": "Skills pessoais de IA do iLuskas",
   "owner": {
-    "name": "Lucas Fernandes"
+    "name": "iLuskas"
   },
   "plugins": [
     {
       "name": "forje-ai",
-      "description": "Skills e atalhos pessoais de IA do Lucas Fernandes para projetos pessoais",
+      "description": "Skills e atalhos pessoais de IA do iLuskas para projetos pessoais",
       "version": "0.1.1",
       "source": "./",
       "author": {
-        "name": "Lucas Fernandes"
+        "name": "iLuskas"
       }
     }
   ]
