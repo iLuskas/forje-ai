@@ -81,7 +81,7 @@ treats a blade: each skill is a stage of the craft, and order matters.
 | 🧪 **Prove it in the fire** | `forje-grilling` | Before hammering, the idea goes to the coals: the plan is interrogated until only what survives the heat remains. |
 | 🔨 **Hammer and shape** | `forje-flow-feature` | The implementation itself — every blow guided by the right context (`covers`/`summary`), never in the dark. |
 | 🔍 **Inspect the blade** | `forje-code-review` | A master's eye on the diff: read-only, evidence in hand, no impulsive hammering. |
-| ⚔️ **Keep the edge** | `forje-docs-sync` | An unmaintained blade loses its edge; an unsynced doc loses its truth. The edge is redrawn after every change. |
+| ⚔️ **Keep the edge** | `forje-docs-sync` | An unmaintained blade loses its edge; an unsynced doc loses its truth. The edge is redrawn after every change. Precise strike: `/forje-ai:docs-sync-report` and `/forje-ai:docs-sync-apply` pin the mode with zero ambiguity. |
 | 🧰 **The workbench** | `forje-registry` | The tool board on the wall: what exists and when to reach for each. |
 | ⚒️ **Forge the tools** | `forje-skill-authoring` | The forge that forges itself: new skills are born here, under the same conventions. |
 | 👁️ **The watchful apprentice** | `SessionStart` hook | Stands at the workshop door: speaks only when the blade has lost its edge (drift). Silence costs zero. |
@@ -339,6 +339,9 @@ forje-ai/
 ├── scripts/
 │   ├── validate.py         # local validation (same checks as CI)
 │   └── gen_registry.py     # generates the forje-registry table from frontmatters
+├── commands/
+│   ├── docs-sync-report.md # /forje-ai:docs-sync-report — read-only audit
+│   └── docs-sync-apply.md  # /forje-ai:docs-sync-apply — in-scope fix
 ├── hooks/
 │   ├── hooks.json          # registers the SessionStart hook
 │   └── session_start.py    # drift sentinel: only speaks when there is drift

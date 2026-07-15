@@ -78,7 +78,7 @@ lâmina: cada skill é uma etapa do ofício, e a ordem importa.
 | 🧪 **Provar no fogo** | `forje-grilling` | Antes de martelar, a ideia vai à brasa: o plano é interrogado até sobrar só o que aguenta o calor. |
 | 🔨 **Martelar e moldar** | `forje-flow-feature` | A implementação em si — cada golpe guiado pelo contexto certo (`covers`/`summary`), nunca no escuro. |
 | 🔍 **Inspecionar a lâmina** | `forje-code-review` | Olho de mestre no diff: read-only, evidência em mão, sem marteladas por impulso. |
-| ⚔️ **Manter o fio** | `forje-docs-sync` | Lâmina sem manutenção perde o corte; doc sem sync perde a verdade. O fio se refaz a cada mudança. |
+| ⚔️ **Manter o fio** | `forje-docs-sync` | Lâmina sem manutenção perde o corte; doc sem sync perde a verdade. O fio se refaz a cada mudança. Golpe preciso: `/forje-ai:docs-sync-report` e `/forje-ai:docs-sync-apply` fixam o modo sem ambiguidade. |
 | 🧰 **A bancada** | `forje-registry` | O quadro de ferramentas na parede: o que existe e quando pegar cada uma. |
 | ⚒️ **Forjar as ferramentas** | `forje-skill-authoring` | A forja que forja a si mesma: novas skills nascem aqui, nas mesmas convenções. |
 | 👁️ **O aprendiz de olho** | hook `SessionStart` | Fica na porta da oficina: só fala quando a lâmina perdeu o fio (drift). Silêncio custa zero. |
@@ -334,6 +334,9 @@ forje-ai/
 ├── scripts/
 │   ├── validate.py         # validação local (mesma do CI)
 │   └── gen_registry.py     # gera a tabela do forje-registry dos frontmatters
+├── commands/
+│   ├── docs-sync-report.md # /forje-ai:docs-sync-report — auditoria read-only
+│   └── docs-sync-apply.md  # /forje-ai:docs-sync-apply — correção em escopo
 ├── hooks/
 │   ├── hooks.json          # registra o hook de SessionStart
 │   └── session_start.py    # sentinela de drift: só fala se houver drift

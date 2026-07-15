@@ -71,6 +71,25 @@ def check_frontmatters() -> None:
             )
 
 
+def check_commands() -> None:
+    cmd_dir = ROOT / "commands"
+    if not cmd_dir.is_dir():
+        return
+    for f in sorted(cmd_dir.glob("*.md")):
+        text = f.read_text(encoding="utf-8")
+        if not text.startswith("---"):
+            errors.append(f"commands/{f.name}: sem frontmatter YAML")
+            continue
+        try:
+            _, fm_raw, _ = text.split("---", 2)
+            fm = yaml.safe_load(fm_raw)
+        except Exception as exc:
+            errors.append(f"commands/{f.name}: frontmatter YAML inválido — {exc}")
+            continue
+        if not isinstance(fm, dict) or not fm.get("description"):
+            errors.append(f"commands/{f.name}: frontmatter sem `description`")
+
+
 def check_versions() -> None:
     plugin = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text("utf-8"))
     market = json.loads(
@@ -100,6 +119,7 @@ def check_registry() -> None:
 
 def main() -> int:
     check_frontmatters()
+    check_commands()
     check_versions()
     check_registry()
     if errors:

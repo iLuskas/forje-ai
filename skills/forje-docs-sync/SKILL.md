@@ -47,6 +47,9 @@ feita na sessão) e registre a migração no relatório final.
 | `--report` | Antes de planejar a partir dos docs; drift achado de passagem | Lista divergências com evidência (`arquivo:linha` vs. trecho do doc). Não edita nada. |
 | `--apply` | Fim de uma implementação, para registrar o que mudou | Corrige os docs diretamente, sem pedir confirmação extra |
 
+Invocação determinística: os comandos `/forje-ai:docs-sync-report` e
+`/forje-ai:docs-sync-apply` fixam o modo sem depender de inferência.
+
 `--apply` só toca em drift **em escopo** da tarefa atual. Drift pré-existente achado
 de passagem vira relatório para decisão manual.
 
