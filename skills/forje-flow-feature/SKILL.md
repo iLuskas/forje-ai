@@ -19,7 +19,9 @@ codar às cegas nem quebrar o que já existe.
 3. **Plano — só quando a mudança não é óbvia** — se for trivial (ajuste pequeno,
    1-2 arquivos), pode ir direto pra implementação. Se envolver decisão de design,
    múltiplos arquivos, ou migração de dado, esboce o plano (arquivos afetados,
-   abordagem, riscos) e confirme antes de escrever código.
+   abordagem, riscos) e confirme antes de escrever código. Se a decisão abrir
+   várias ramificações dependentes entre si (a escolha de uma muda o resto do
+   plano), use `forje-ai:forje-grilling` em vez de uma confirmação única.
 4. **Implementar** seguindo as convenções que já existem no repo — nomenclatura,
    estrutura de pastas, estilo. Convenção do repo > preferência pessoal do momento.
 5. **Testar** — caminho feliz + pelo menos um caso de erro, no framework que o repo
