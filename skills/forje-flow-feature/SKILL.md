@@ -23,6 +23,9 @@ codar às cegas nem quebrar o que já existe.
    3. Sem nenhum dos dois: olhada rápida na estrutura (linguagem, framework,
       testes) antes de decidir como implementar — e, ao fechar a tarefa, sugira
       `forje-ai:forje-docs-bootstrap` para a próxima sessão já começar barata.
+      Repo vazio/embrionário mas com visão ou spec disponível (na conversa ou
+      em arquivo): sugira `forje-ai:forje-blueprint` ANTES de implementar — o
+      risco vem antes do martelo.
 
    Em qualquer nível: se o projeto tiver um índice de código disponível
    (codegraph, graphify ou similar, via MCP), prefira consultá-lo a explorar

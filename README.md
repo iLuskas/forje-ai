@@ -74,6 +74,7 @@ lâmina: cada skill é uma etapa do ofício, e a ordem importa.
 
 | Etapa da forja | Skill | O que acontece |
 |---|---|---|
+| 📐 **Riscar a lâmina** | `forje-blueprint` | Antes do metal, o desenho: a visão/spec do projeto vira docs vivos com âncoras `spec:` — intenção registrada, pronta pra virar realidade. |
 | 🔥 **Aquecer o metal bruto** | `forje-docs-bootstrap` | O repo cru vira material trabalhável: docs vivos, manifest, âncoras. Sem aquecer, todo golpe de martelo custa o dobro. |
 | 🧪 **Provar no fogo** | `forje-grilling` | Antes de martelar, a ideia vai à brasa: o plano é interrogado até sobrar só o que aguenta o calor. |
 | 🔨 **Martelar e moldar** | `forje-flow-feature` | A implementação em si — cada golpe guiado pelo contexto certo (`covers`/`summary`), nunca no escuro. |

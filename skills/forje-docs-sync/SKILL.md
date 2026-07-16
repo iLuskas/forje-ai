@@ -71,6 +71,12 @@ de passagem vira relatório para decisão manual.
    âncora para baratear o próximo sync.
 5. **Classificar** — `desatualizado` (doc afirma algo que o código não faz mais),
    `lacuna` (código novo sem doc), `erro` (doc nunca esteve certo).
+   **Âncora `(spec: ...)` inverte a direção da verdade**: a claim é intenção
+   (nascida no `forje-blueprint`), não fato. Não é drift. Três desfechos:
+   implementada → confirme no código e **migre a âncora** para `(src/...)`;
+   ainda não implementada → reporte como `intenção pendente`; código contradiz
+   a spec → reporte como `decisão necessária` (spec errada ou código errado —
+   quem decide é o humano, nunca o sync).
 6. **Agir conforme o modo** — reportar em tabela (doc, seção, divergência,
    evidência) ou aplicar as correções preservando estilo/estrutura do doc, no
    mesmo estilo denso do bootstrap: claims diretas com âncora, sem prosa de

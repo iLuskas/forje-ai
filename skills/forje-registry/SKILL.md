@@ -13,6 +13,7 @@ Skills pessoais disponíveis abaixo. Prefixo de invocação: `forje-ai:`.
 
 | Invocar | O que faz / quando usar |
 |---------|--------------------------|
+| `forje-ai:forje-blueprint` | Gera docs vivos e .claude/context.yaml a partir da INTENÇÃO em projetos novos ou vazios — um prompt de visão, um .md de requisitos, um PDF de spec. Direção inversa do forje-docs-bootstrap (que extrai do código existente). Use quando o repositório está vazio ou embrionário mas existe material de visão/spec na conversa ou em arquivo. |
 | `forje-ai:forje-code-review` | Revisão de código para projetos pessoais — correção, aderência às convenções do repositório, simplicidade e segurança básica — sobre o diff atual. Somente leitura. Use quando pedirem "revisa", "review", "confere meu código", ou antes de commitar/abrir PR num projeto pessoal. |
 | `forje-ai:forje-docs-bootstrap` | Gera do zero os docs vivos de um projeto pessoal que ainda não tem documentação de contexto — detecta o perfil (API/backend .NET, Node, Python, frontend React) e gera o conjunto de docs adequado, terminando com o .claude/context.yaml criado. Use quando pedirem "gera os contexts", "documenta esse projeto", "cria o context.md", ou quando um projeto pessoal sem docs vivos precisar aderir ao padrão. |
 | `forje-ai:forje-docs-sync` | Motor de sincronização de documentação viva para projetos pessoais. Detecta divergências entre os docs declarados no .claude/context.yaml do repositório e o código atual, e reporta (--report) ou corrige (--apply). Use no início de uma tarefa que vá planejar a partir de docs vivos, ao final de uma implementação que muda comportamento documentado, ou quando suspeitar que os docs estão desatualizados. |
@@ -27,6 +28,7 @@ Skills pessoais disponíveis abaixo. Prefixo de invocação: `forje-ai:`.
 - Feature/bug/refactor pedido direto → `forje-flow-feature`
 - "revisa meu código / o diff" → `forje-code-review`
 - "docs desatualizados / confere docs vs código" → `forje-docs-sync`
-- Projeto ainda sem docs de contexto → `forje-docs-bootstrap`
+- Projeto ainda sem docs de contexto (código existe) → `forje-docs-bootstrap`
+- Projeto novo/vazio com visão ou spec em mãos → `forje-blueprint`
 - Stress-testar uma decisão/plano/ideia antes de agir → `forje-grilling`
 - Criar/editar skill deste plugin → `forje-skill-authoring`

@@ -77,6 +77,7 @@ treats a blade: each skill is a stage of the craft, and order matters.
 
 | Forging stage | Skill | What happens |
 |---|---|---|
+| 📐 **Draw the blade** | `forje-blueprint` | Before the metal, the drawing: the project's vision/spec becomes living docs with `spec:` anchors — intent on record, ready to become reality. |
 | 🔥 **Heat the raw metal** | `forje-docs-bootstrap` | The raw repo becomes workable material: living docs, manifest, anchors. Skip the heat and every hammer blow costs double. |
 | 🧪 **Prove it in the fire** | `forje-grilling` | Before hammering, the idea goes to the coals: the plan is interrogated until only what survives the heat remains. |
 | 🔨 **Hammer and shape** | `forje-flow-feature` | The implementation itself — every blow guided by the right context (`covers`/`summary`), never in the dark. |
